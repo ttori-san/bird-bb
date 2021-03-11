@@ -12,22 +12,30 @@
           <span class="sr-only">(current)</span>
         </a>
       </li>
+      @guest
       <li class="nav-item">
-        <a class="nav-link" href="login">Log in</a>
+        <a class="nav-link" href="{{route("login")}}">ログイン</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="register">ユーザー登録</a>
+        <a class="nav-link" href="{{route('register')}}">ユーザー登録</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">Dropdown
-        </a>
-        <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+      @endguest
+
+          @auth
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">Dropdown
+            </a> 
+            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+              <form method="POST" action="{{route('logout')}}">
+                @csrf
+                <button class="dropdown-item" type="submit">ログアウト</button>
+              </form>
+              <button class="dropdown-item" href="#">Something else here 
+              </button>
+            </div>
+          </li>
+           @endauth
     </ul>
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
@@ -40,9 +48,13 @@
           <i class="fab fa-google-plus-g"></i>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link waves-effect waves-light" href="{{route("articles.create")}}">
+          <i class="fas fa-plus"></i>      
+         </a>
+      </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-default"

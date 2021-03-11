@@ -10,8 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', 'LetterController@index');
-
 Auth::routes();
 
+Route::get('/', 'LetterController@index')->name('articles.index');
+
+Route::resource('/articles', 'LetterController')->except(['index']);
